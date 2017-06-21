@@ -11,5 +11,17 @@ Rails.application.routes.draw do
   # 生成验证码并验证的路径：
   resources :phone_tokens, only: [:create]
 
+  # admin的命名空间
+  namespace :admin do
+    resources :categories
+    resources :lessons do
+      resources :chapters
+      resources :posts do
+        member do
+          post :update_weight
+        end
+      end
+    end
+  end
 
 end

@@ -42,8 +42,11 @@ gem 'font-awesome-rails'
 
 # 发短信用的gem
 gem 'china_sms'
-
+# 管理密码的gem
 gem 'figaro'
+# 上传图片用的gem
+gem 'carrierwave'
+gem 'mini_magick'
 
 
 

@@ -66,7 +66,6 @@
         token_interval,
         $token_btn = $('.fetch-token-btn');
       $token_btn.click(function () {
-        alert(0);
         var $this = $(this),
         cellphone = $('#user_phone').val();
         $.ajax({
@@ -75,7 +74,6 @@
           method: 'post',
           data: {phone: cellphone},
           beforeSend: function () {
-            alert(cellphone);
             if (!CELLPHONE_RE.test(cellphone)) {
               alert("手机号码格式错误!");
               return false;

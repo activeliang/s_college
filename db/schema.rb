@@ -10,7 +10,36 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170621050745) do
+ActiveRecord::Schema.define(version: 20170621093445) do
+
+  create_table "categories", force: :cascade do |t|
+    t.string   "title"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "chapters", force: :cascade do |t|
+    t.string   "title"
+    t.integer  "lesson_id"
+    t.integer  "weight"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "lessons", force: :cascade do |t|
+    t.string   "title"
+    t.string   "subtitle"
+    t.string   "main_image"
+    t.string   "minor_image"
+    t.boolean  "is_free",     default: false
+    t.integer  "category_id"
+    t.integer  "weight"
+    t.text     "intro"
+    t.text     "description"
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
+    t.string   "effect"
+  end
 
   create_table "phone_tokens", force: :cascade do |t|
     t.string   "token"
@@ -21,12 +50,22 @@ ActiveRecord::Schema.define(version: 20170621050745) do
     t.index ["phone", "token"], name: "index_phone_tokens_on_phone_and_token"
   end
 
+  create_table "posts", force: :cascade do |t|
+    t.string   "title"
+    t.integer  "lesson_id"
+    t.integer  "chapter_id"
+    t.integer  "weight"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.text     "description"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string   "email"
     t.string   "crypted_password"
     t.string   "salt"
-    t.datetime "created_at",                      null: false
-    t.datetime "updated_at",                      null: false
+    t.datetime "created_at",                                      null: false
+    t.datetime "updated_at",                                      null: false
     t.string   "remember_me_token"
     t.datetime "remember_me_token_expires_at"
     t.string   "reset_password_token"
@@ -36,6 +75,7 @@ ActiveRecord::Schema.define(version: 20170621050745) do
     t.string   "activation_token"
     t.datetime "activation_token_expires_at"
     t.string   "phone"
+    t.boolean  "is_admin",                        default: false
     t.index ["activation_token"], name: "index_users_on_activation_token"
     t.index ["phone"], name: "index_users_on_phone"
     t.index ["remember_me_token"], name: "index_users_on_remember_me_token"

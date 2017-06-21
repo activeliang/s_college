@@ -18,6 +18,9 @@
                     <b class="caret"></b>
                   </a>
                   <ul class="dropdown-menu">
+                    <% if current_user.is_admin? %>
+                    <li><%= link_to "管理员后台", admin_categories_path %></li>
+                    <% end %>
                     <li> <%= link_to(content_tag(:i, '登出', class: 'fa fa-sign-out'), logout_path, method: :delete) %> </li>
                   </ul>
                 </li>
