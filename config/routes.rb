@@ -28,5 +28,10 @@ Rails.application.routes.draw do
   end
 
   resources :posts
-
+  resources :lessons do
+    member do
+      get :syllabus
+    end
+    resources :chapters
+  end
 end

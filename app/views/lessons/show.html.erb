@@ -1,0 +1,61 @@
+<div class="container lesson-show">
+  <!-- 导航条 -->
+  <div class="lesson-page-nav"><%= link_to "首页", root_path %> > <%= @lesson.category.title %> > <%= @lesson.title %></div>
+  <div class="lesson-bc-1 clearfix">
+    <!-- 左边的区块 -->
+    <div class="col-sm-7 bc-1-1">
+      <div class="lesson-minor-image">
+        <%= image_tag(@lesson.minor_image.medium, class: "img-responsive") %>
+      </div>
+      <div class="lesson-intro">
+        <p><%= @lesson.intro %></p>
+      </div>
+    </div>
+    <!-- 左边区块结束 -->
+
+    <!-- 右边区块 -->
+    <div class="col-sm-5 bc-1-2">
+      <div class="row lesson-title">
+        <h5><%= @lesson.title %></h5>
+      </div>
+      <div class="row lesson-subtitle">
+        <p><%= @lesson.subtitle %></p>
+        <p class="sales_count">已有1人开始学习...</p>
+      </div>
+        <div class="lesson-effect">
+          <p class="effect"><%= @lesson.effect %></p>
+        </div>
+      <!-- 支付功能未做，付款按钮和vip权限暂时无法做 -->
+      <div class="payment-alert">
+        <p>立即付款开始学习，支付成功后，可在个人订单中心查看此订单。</p>
+      </div>
+      <div class="lesson-pay-btn">
+        <div class="to-learn-btn">
+          <a type="button" class="btn btn-success" data-toggle="tooltip" data-placement="top" title="付款后可以开始学习">准备学习</a>
+          <%= link_to "开始学习", syllabus_lesson_path(@lesson), class: "btn btn-success" %>
+        </div>
+      </div>
+
+    </div>
+    <!-- 右边区块结束 -->
+  </div>
+
+  <!-- 课程的详情介绍 -->
+  <div class="lesson-bc-2">
+    <div class="lesson-intro-slogan">
+      <p>课程介绍</p>
+    </div>
+    <div class="intro-markdown">
+      <%= raw @lesson.description %>
+    </div>
+  </div>
+</div>
+
+
+<script>
+// 一个bootstrap的按钮提示
+$(function () {
+  $('[data-toggle="tooltip"]').tooltip();
+})
+
+</script>
