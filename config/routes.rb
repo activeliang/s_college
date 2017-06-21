@@ -2,6 +2,9 @@ Rails.application.routes.draw do
   # 首页导向：
   root 'welcome#index'
 
+  # 测试用的页面
+  get 'test' => 'welcome#test'
+
   # 登陆的路径：
   resources :sessions
   # 注册的路径：
@@ -23,5 +26,7 @@ Rails.application.routes.draw do
       end
     end
   end
+
+  resources :posts
 
 end

@@ -1,0 +1,15 @@
+
+
+<script>
+  editor = new Simditor(
+   textarea: $('#editor')
+   toolbar: [
+     'title','bold','italic','underline','strikethrough','color','|'
+     'ol','ul','blockquote','code','table','link','image','hr','|'
+     'indent','outdent'
+   ]
+   pasteImage: true
+   defaultImage: '<%= image_path "upload-loading.png" %>'
+   upload: url: '/upload')
+</script>
+<textarea id="editor" placeholder="Balabala" autofocus></textarea>

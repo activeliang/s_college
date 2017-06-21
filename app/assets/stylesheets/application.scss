@@ -11,7 +11,10 @@
  * It is generally better to create a new file per style scope.
  *
  *= require_tree .
+ *= require simditor
  *= require_self
+ *= require simditor
+ *= require simditor-markdown
  */
 @import "bootstrap-sprockets";
 @import "bootstrap";

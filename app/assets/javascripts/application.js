@@ -13,4 +13,14 @@
 //= require jquery
 //= require jquery_ujs
 //= require bootstrap-sprockets
+//= require simditor
+//= require marked
+//= require to-markdown
+//= require simditor-marked
+//= require simditor-markdown
+//= require simditor-mark
+//= require simditor-dropzone
+//= require hotkeys
+//= require module
+//= require uploader
 //= require_tree .

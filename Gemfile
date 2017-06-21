@@ -47,6 +47,8 @@ gem 'figaro'
 # 上传图片用的gem
 gem 'carrierwave'
 gem 'mini_magick'
+# markdown编辑器
+gem 'simditor'
 
 
 
