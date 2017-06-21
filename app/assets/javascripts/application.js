@@ -20,7 +20,4 @@
 //= require simditor-markdown
 //= require simditor-mark
 //= require simditor-dropzone
-//= require hotkeys
-//= require module
-//= require uploader
 //= require_tree .
