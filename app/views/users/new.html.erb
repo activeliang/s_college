@@ -1,0 +1,115 @@
+<% unless @user.errors.empty? %>
+      <div class="alert alert-danger">
+        <ul>
+          <% @user.errors.messages.values.flatten.each do |error| %>
+            <li><%= error %></li>
+          <% end -%>
+        </ul>
+      </div>
+<% end -%>
+​
+<div class="input-group">
+  <div class="input-slogan"><h2>新用户注册</h2></div>
+    <%= form_for :user, url: users_path, method: :post, html: { class: 'form-horizontal', id: "user_form"} do |f| %>
+​
+      <!-- 输入手机号 -->
+        <div class="input-item">
+          <div class="phonenumber">
+          <%= f.text_field :phone, class: "form-control", placeholder: "11位手机号码"%>
+          </div>
+        </div>
+​
+      <!-- 手机验证码 -->
+        <div class="input-item">
+          <div class="row phone-item">
+​
+            <div class="col-sm-6 button-size">
+              <input type="button" value="获取验证码" class="btn btn-warning fetch-token-btn" data-url="<%= phone_tokens_path %>" />
+            </div>
+            <div class="col-sm-6 token-size">
+              <%= f.text_field :token, class: "form-control", placeholder: "短信校验码" %>
+            </div>
+          </div>
+        </div>
+​
+      <!-- 输入密码 -->
+        <div class="input-item">
+          <div class="password-input">
+            <%= f.password_field :password, class: "form-control" ,id:"signup-input" , placeholder: "密码" %>
+          </div>
+        </div>
+        <!-- 密码确认 -->
+      <div class="password-input">
+        <div class="signup-input">
+          <%= f.password_field :password_confirmation, class: "form-control", id:"signup-input", placeholder: "密码确认"%>
+        </div>
+      </div>
+​
+       <!-- 创建帐户 -->
+        <div class="input-create">
+          <div class="create-btn">
+            <input type="submit" name="create_user_submit" value="创建账户" ,id="signup-input", class="btn btn-primary">
+          </div>
+        </div>
+  <% end %>
+</div>
+
+
+
+<!-- 以下是js -->
+<%= content_for :javascripts do %>
+  <script>
+    (function(){
+      // 手机验证码
+      var CELLPHONE_RE = /^(\+86|86)?1\d{10}$/;
+      var token_wait = 60,
+        token_interval,
+        $token_btn = $('.fetch-token-btn');
+      $token_btn.click(function () {
+        alert(0);
+        var $this = $(this),
+        cellphone = $('#user_phone').val();
+        $.ajax({
+
+          url: $this.data('url'),
+          method: 'post',
+          data: {phone: cellphone},
+          beforeSend: function () {
+            alert(cellphone);
+            if (!CELLPHONE_RE.test(cellphone)) {
+              alert("手机号码格式错误!");
+              return false;
+            }
+            $this.data('old-value', $this.attr('value'));
+            $this.attr('value', "发送中...").prop('disabled', true);
+          },
+          success: function (data) {
+            if (data.status == 'error') {
+              alert(data.message);
+            $token_btn.attr('value', '获取短信验证码').prop('disabled', false);
+					}else
+              {
+              $this.attr('value', $this.data('old-value'));
+              $this.trigger('start_token_timer');
+            }
+          }
+        })
+      })
+      .on('start_token_timer', function () {
+        token_interval = setInterval(function () {
+          $token_btn.trigger('token_timer');
+        }, 1000);
+      })
+      .on('token_timer', function () {
+        token_wait--;
+        if (token_wait <= 0) {
+          clearInterval(token_interval);
+          $token_btn.attr('value', '获取短信验证码').prop('disabled', false);
+          token_wait = 60;
+        } else {
+          $token_btn.attr('value', '重新发送 ' + token_wait + ' 秒').prop('disabled', true);
+        }
+      })
+    })()
+  </script>
+  <% end %>

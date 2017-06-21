@@ -1,0 +1,43 @@
+
+<div class="login-input-group">
+​
+  <div class="login-slogan">
+      <h5>登录</h5>
+  </div>
+​
+ <%= form_tag sessions_path, method: :post, class: "form-horizontal login-form" do %>
+    <!-- 输入手机号 -->
+    <div class="input-item">
+    <div class="input-item-1">
+       <%= text_field_tag :phone, nil, class: "form-control" , placeholder:"手机号"%>
+    </div>
+   </div>
+​
+    <!-- 输入密码 -->
+   <div class="input-item">
+   <div class="input-item-1">
+    <%= password_field_tag :password, nil, class: "form-control", placeholder:"密码"%>
+    </div>
+   </div>
+​
+    <!-- 返回注册的链接 -->
+   <div class="input-item">
+    <div class="col-sm-2">
+    </div>
+   <div class="input-item-1">
+    <div class="pull-right">
+     <a href="<%= new_user_path %>", class="text-color">注册</a>
+     </div>
+    </div>
+   </div>
+​
+    <!-- 登陆按钮 -->
+   <div class="input-item">
+    <div class="col-sm-2">
+    </div>
+   <div class="input-item-1">
+     <input type="submit" name="sign_submit" value="登录" class="col-xs-12 btn btn-primary">
+    </div>
+   </div>
+  <% end %>
+ </div>
