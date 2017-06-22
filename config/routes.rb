@@ -27,6 +27,7 @@ Rails.application.routes.draw do
     end
   end
 
+  # 用户浏览课程的路由
   resources :posts
   resources :lessons do
     member do
@@ -34,4 +35,7 @@ Rails.application.routes.draw do
     end
     resources :chapters
   end
+
+  # 创建订单的路由
+  resources :orders
 end
