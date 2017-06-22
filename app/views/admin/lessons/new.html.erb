@@ -15,5 +15,6 @@
 <%= f.input :effect, label: "写在价格后面的[宣传效果]，尽量10字内！" %>
 <%= f.input :main_image, label: "在首页的展示图" %>
 <%= f.input :minor_image, label: "介绍页面大图" %>
-<%= f.submit "提交" %>
+<%= f.input :is_free, label: "免费课程" %>
+<%= f.submit "提交", class: "btn btn-primary" %>
 <% end  %>

@@ -56,8 +56,8 @@
     </tr>
   <% end %>
 </table>
-
   <% end %>
+
   <hr>
 <h4>新增章节</h4>
 <%= simple_form_for [:admin,@lesson,@chapter] do |f| %>
@@ -76,12 +76,6 @@
 </select>
 <%= f.input :title, label: "文章标题" %>
 <%= f.input :weight, label: "排序值，从1开始排序，值越大，位置越后" %>
-<%= f.input :description, label: 'Tower同款编辑器，支持markdown.' %>
+<%= f.input :description, label: "在Typora内编辑好后，全选，然后快捷键: alt + commond + s 复制，再粘贴到这里" %>
 <%= f.submit "submit", class: "btn btn-primary" %>
 <% end %>
-
-
-<!-- 以下是初始化simditor的代码 -->
-<script type="text/javascript">
-  var editor = new Simditor({ textarea: $('#post_description'), toolbar: ['title', 'bold', 'italic', 'underline', 'strikethrough', 'color', '|', 'ol', 'ul', '|', 'markdown', 'blockquote', 'code', 'table', 'link','image', '|','hr', 'indent', 'outdent', 'alignment', '|', 'marked', 'mark'],  placeholder: '请输入内容。。。', pasteImage: true, fileKey: 'file', upload: { url: '/photos', params: null, connectionCount: 3, leaveConfirm: 'Uploading is in progress, are you sure to leave this page?' } });
-</script>
