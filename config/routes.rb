@@ -31,6 +31,7 @@ Rails.application.routes.draw do
         post :update_weight
       end
     end
+    resources :users
   end
 
   # 用户浏览课程的路由
