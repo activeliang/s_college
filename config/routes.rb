@@ -25,6 +25,12 @@ Rails.application.routes.draw do
         end
       end
     end
+    resources :vip_prices do
+      member do
+        post :update_state
+        post :update_weight
+      end
+    end
   end
 
   # 用户浏览课程的路由
@@ -38,4 +44,8 @@ Rails.application.routes.draw do
 
   # 创建订单的路由
   resources :orders
+
+
+
+
 end

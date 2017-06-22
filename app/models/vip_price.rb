@@ -1,0 +1,2 @@
+class VipPrice < ApplicationRecord
+end

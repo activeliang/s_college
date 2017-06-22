@@ -8,5 +8,6 @@ class CreateOrders < ActiveRecord::Migration[5.0]
       t.datetime :payment_at
       t.timestamps
     end
+    add_index :orders, [:user_id, :token, :payment_id]
   end
 end

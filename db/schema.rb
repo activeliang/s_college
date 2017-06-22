@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170622125213) do
+ActiveRecord::Schema.define(version: 20170622140613) do
 
   create_table "categories", force: :cascade do |t|
     t.string   "title"
@@ -52,6 +52,18 @@ ActiveRecord::Schema.define(version: 20170622125213) do
     t.datetime "updated_at",                                          null: false
   end
 
+  create_table "payments", force: :cascade do |t|
+    t.integer  "user_id"
+    t.string   "payment_no"
+    t.string   "transaction_no"
+    t.boolean  "is_paid",                                 default: false
+    t.decimal  "price",          precision: 10, scale: 2
+    t.datetime "payment_at"
+    t.text     "raw_response"
+    t.datetime "created_at",                                              null: false
+    t.datetime "updated_at",                                              null: false
+  end
+
   create_table "phone_tokens", force: :cascade do |t|
     t.string   "token"
     t.string   "phone"
@@ -87,10 +99,21 @@ ActiveRecord::Schema.define(version: 20170622125213) do
     t.datetime "activation_token_expires_at"
     t.string   "phone"
     t.boolean  "is_admin",                        default: false
+    t.boolean  "is_vip",                          default: false
+    t.datetime "expriy_date"
     t.index ["activation_token"], name: "index_users_on_activation_token"
     t.index ["phone"], name: "index_users_on_phone"
     t.index ["remember_me_token"], name: "index_users_on_remember_me_token"
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token"
+  end
+
+  create_table "vip_prices", force: :cascade do |t|
+    t.string   "title"
+    t.decimal  "price",      precision: 10, scale: 2
+    t.integer  "weight"
+    t.boolean  "is_hidden",                           default: true
+    t.datetime "created_at",                                         null: false
+    t.datetime "updated_at",                                         null: false
   end
 
 end

@@ -1,0 +1,7 @@
+<%= simple_form_for [:admin, @vip_price] do |f| %>
+  <%= f.input :title %>
+  <%= f.input :price %>
+  <%= f.input :weight %>
+  <%= f.input :is_hidden %>
+  <%= f.submit "submit", class: "btn btn-primary" %>
+<% end %>
