@@ -46,6 +46,13 @@ Rails.application.routes.draw do
   # 创建订单的路由
   resources :orders
 
+  # 用户信息编辑
+  resources :users do
+    member do
+      post :edit_detail
+    end
+  end
+
 
 
 

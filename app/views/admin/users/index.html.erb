@@ -4,7 +4,12 @@
   <thead>
     <tr>
       <td>ID</td>
-      <td>手机号</td>
+      <td>注册手机号</td>
+      <td>联系手机号</td>
+      <td>用户名</td>
+      <td>微信号</td>
+      <td>邮箱</td>
+      <td>用户头像</td>
       <td>注册时间</td>
     </tr>
   </thead>
@@ -13,6 +18,17 @@
       <tr>
         <td><%= user.id %></td>
         <td><%= user.phone %></td>
+        <td><%= user.contact_phone %></td>
+        <td><%= user.user_name %></td>
+        <td><%= user.wechat %></td>
+        <td><%= user.email %></td>
+        <td>
+          <% if user.user_image.present? %>
+          <%= image_tag user.user_image.thumb, class: "thumb img-responsive" %>
+          <% else %>
+          <%= image_tag("http://placehold.it/100x100&text=No Pic", class: "thumb img-responsive") %>
+          <% end %>
+        </td>
         <td><%= user.created_at.strftime('%Y-%m-%d %H:%M:%S') %></td>
       </tr>
     <% end  %>

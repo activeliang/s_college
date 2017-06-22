@@ -1,4 +1,6 @@
 class User < ApplicationRecord
+  mount_uploader :user_image, UserImageUploader
+
   authenticates_with_sorcery!
 
   attr_accessor :password, :password_confirmation, :token
@@ -30,7 +32,7 @@ class User < ApplicationRecord
             self.errors.add :phone, "手机号格式不正确"
             return false
           end
-         
+
           unless PhoneToken.available.find_by(phone: self.phone, token: self.token)
             self.errors.add :phone, "手机验证码不正确或者已过期"
             return false
