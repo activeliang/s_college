@@ -1,5 +1,6 @@
 <div class="container">
   <h1>编辑个人资料</h1>
+  <p>会员到期时间：<%= current_user.is_vip && current_user.expriy_date > Time.now ? current_user.expriy_date : "普通会员" %></p>
 
   <%= simple_form_for :user, url: edit_detail_user_path(@user) do |f| %>
   <%= f.input :phone, label: "注册手机号码", disabled: true, hint: '您无法修改注册时的手机号码，但可修改联系用的手机号码~' %>
