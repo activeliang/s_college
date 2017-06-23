@@ -23,7 +23,7 @@ class Payment < ApplicationRecord
 
         user = User.find(order.user_id)
         user.is_vip = true
-        user.expriy_date = Date.tody + 365
+        user.expriy_date = Date.today + 365
         user.save
 
       end
