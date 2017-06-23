@@ -117,7 +117,7 @@ class PaymentsController < ApplicationController
   def do_payment_test
 
     @payment = Payment.find_by_payment_no(params[:out_trade_no])
-    unless @payment.is_success?
+    unless @payment.is_paid?
       if is_payment_success?
         ChinaSMS.use :yunpian, password: ENV["sms_pay"]
         ChinaSMS.to @payment.user.phone, "待继。。。"
