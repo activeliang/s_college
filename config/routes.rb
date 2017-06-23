@@ -44,12 +44,25 @@ Rails.application.routes.draw do
   end
 
   # 创建订单的路由
-  resources :orders
+  resources :orders do
+    collection do
+      post :create_order
+    end
+  end
 
   # 用户信息编辑
   resources :users do
     member do
       post :edit_detail
+    end
+  end
+
+  # 生成支付
+  resources :payments do
+    collection do
+      get :generate_payment
+      get :create_payment
+      post :test
     end
   end
 

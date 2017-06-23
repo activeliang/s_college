@@ -1,1 +1,21 @@
 <h1> Hello World! </h1>
+
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <td>ID</td>
+      <td>title</td>
+      <td></td>
+    </tr>
+  </thead>
+  <tbody>
+    <% @lessons.each do |lesson| %>
+      <tr>
+        <td><%= lesson.id %></td>
+        <td><%= link_to lesson.title, lesson_path(lesson) %></td>
+        <td><%=  %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

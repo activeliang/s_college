@@ -1,6 +1,10 @@
 class User < ApplicationRecord
   mount_uploader :user_image, UserImageUploader
 
+  has_many :orders
+  has_many :payments
+  
+
   authenticates_with_sorcery!
 
   attr_accessor :password, :password_confirmation, :token

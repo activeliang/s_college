@@ -6,7 +6,7 @@ class Admin::VipPricesController < ApplicationController
 
 
   def index
-    @vip_prices = VipPrice.all
+    @vip_prices = VipPrice.order( weight: "desc")
     @vip_price = VipPrice.new
   end
 
