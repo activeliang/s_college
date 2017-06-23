@@ -11,10 +11,17 @@
 <%= f.input :intro, label: "简介"%>
 <%= f.input :description, label: "详情介绍(markdown)" %>
 <%= f.input :subtitle, label: "副标题" %>
-<%= f.input :price %>
 <%= f.input :weight %>
 <%= f.input :effect %>
-<%= f.input :main_image, label: "在首页的展示图" %>
+<% if @lesson.main_image.present? %>
+<h3>当前已上传首页展示图</h3>
+<%= image_tag @lesson.main_image.small, class: "thumb", style: "box-shadow: 10px 10px 40px #888; margin: 10px;" %>
+<% end  %>
+<%= f.input :main_image, label: "在首页的展示图" %> <br>
+<% if @lesson.main_image.present? %>
+<h3>当前已上传首页展示图</h3>
+<%= image_tag @lesson.minor_image.medium, class: "thumb", style: "box-shadow: 10px 10px 40px #888; margin: 10px;"%>
+<% end  %>
 <%= f.input :minor_image, label: "介绍页面大图" %>
-<%= f.submit "提交" %>
+<%= f.submit "提交", class: "btn btn-primary" %>
 <% end  %>
