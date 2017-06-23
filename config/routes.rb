@@ -63,6 +63,8 @@ Rails.application.routes.draw do
       get :generate_payment
       get :create_payment
       post :test
+      post :pay_notify
+      get :pay_notify
     end
   end
 
