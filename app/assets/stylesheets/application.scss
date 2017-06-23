@@ -20,7 +20,6 @@ address,caption,cite,code,dfn,em,strong,th,var {
   font-weight: normal
 }
 
-
 caption,th {
   text-align: left
 }
@@ -44,3 +43,5 @@ caption,th {
 @import "font-awesome";
 @import "markdown";
 @import "payments";
+@import "lessons";
+@import "posts";

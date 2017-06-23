@@ -1,8 +1,6 @@
 <div class="container lesson-show">
-  <!-- 导航条 -->
   <div class="lesson-page-nav"><%= link_to "首页", root_path %> > <%= @lesson.category.title %> > <%= @lesson.title %></div>
   <div class="lesson-bc-1 clearfix">
-    <!-- 左边的区块 -->
     <div class="col-sm-7 bc-1-1">
       <div class="lesson-minor-image">
         <%= image_tag(@lesson.minor_image.medium, class: "img-responsive") %>
@@ -11,36 +9,57 @@
         <p><%= @lesson.intro %></p>
       </div>
     </div>
-    <!-- 左边区块结束 -->
-
-    <!-- 右边区块 -->
     <div class="col-sm-5 bc-1-2">
       <div class="row lesson-title">
         <h5><%= @lesson.title %></h5>
       </div>
       <div class="row lesson-subtitle">
         <p><%= @lesson.subtitle %></p>
-        <p class="sales_count">已有1人开始学习...</p>
+
       </div>
-        <div class="lesson-effect">
-          <p class="effect"><%= @lesson.effect %></p>
-        </div>
-      <!-- 支付功能未做，付款按钮和vip权限暂时无法做 -->
+
+      <div class="row lesson-price">
+        <h6 class="price"> <%= @lesson.is_free ? "VIP课程" : "免费课程" %> </h6>
+        <p class="effect"><%= @lesson.effect %></p>
+      </div>
+      <% if current_user.is_vip && current_user.expriy_date > Time.now %>
+
       <div class="payment-alert">
-        <p>立即付款开始学习，支付成功后，可在个人订单中心查看此订单。</p>
+        <p>您已是VIP会员～！</p>
       </div>
+
+      <div class="to-learn-btn">
+        <%= link_to "开始学习", syllabus_lesson_path(@lesson), class: "btn btn-success" %>
+      </div>
+
+
+      <% else %>
+      <div class="payment-alert">
+        <p>加入VIP会员，即可查看整站VIP课程。</p>
+      </div>
+
       <div class="lesson-pay-btn">
         <div class="to-learn-btn">
-          <a type="button" class="btn btn-success" data-toggle="tooltip" data-placement="top" title="成为VIP后可以开始学习">准备学习</a>
-          <%= link_to "立即变身VIP", payments_path, class: "btn btn-success" %>
+          <a type="button" class="btn btn-success" data-toggle="tooltip" data-placement="top" title="加入VIP后可以开始学习">开始学习</a>
         </div>
+        <div class="payment-index">
+          <% if current_user? %>
+            <div class="payment-btn">
+            <%= link_to "立即加入VIP会员", payments_path, class: "btn btn-primary" %>
+            </div>
+          <% else %>
+          <!-- 未登入时的按钮 -->
+          <div class="payment-btn-4">
+            <%= link_to "立即加入VIP会员", payments_path, class: "btn btn-primary" %>
+            </div>
+          <% end %>
+          </div>
       </div>
 
+        <% end %>
     </div>
-    <!-- 右边区块结束 -->
   </div>
 
-  <!-- 课程的详情介绍 -->
   <div class="lesson-bc-2">
     <div class="lesson-intro-slogan">
       <p>课程介绍</p>
@@ -52,10 +71,21 @@
 </div>
 
 
+</div>
+
+
+
+
 <script>
-// 一个bootstrap的按钮提示
+// 以下是bootstrap的提示按钮
 $(function () {
   $('[data-toggle="tooltip"]').tooltip();
+})
+
+
+// 以下是未登入的提示
+$(".payment-btn-4").click(function(){
+  alert("请先登入哦~");
 })
 
 </script>
