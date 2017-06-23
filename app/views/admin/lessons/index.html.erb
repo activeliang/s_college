@@ -16,8 +16,8 @@
     <% @lessons.each do |lesson| %>
     <tr>
       <td><%= link_to lesson.title, admin_lesson_path(lesson) %></td>
+      <td><%= lesson.subtitle %></td>
       <td><%= lesson.intro %></td>
-      <td><%= lesson.description %></td>
       <td><%= image_tag lesson.main_image.thumb, class: "img-responsive" %></td>
       <td><%= image_tag lesson.minor_image.thumb, class: "img-responsive" %></td>
       <td>
