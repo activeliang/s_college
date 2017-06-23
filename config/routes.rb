@@ -65,6 +65,8 @@ Rails.application.routes.draw do
       post :test
       post :pay_notify
       get :pay_notify
+      get :success
+      get :failed
     end
   end
 
